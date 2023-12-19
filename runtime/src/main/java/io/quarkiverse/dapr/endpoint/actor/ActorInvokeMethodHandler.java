@@ -1,6 +1,7 @@
 package io.quarkiverse.dapr.endpoint.actor;
 
 import io.dapr.actors.runtime.ActorRuntime;
+import io.vertx.core.buffer.Buffer;
 import io.vertx.ext.web.RoutingContext;
 
 /**
@@ -35,6 +36,7 @@ public class ActorInvokeMethodHandler extends AbstractDaprActorHandler {
         } else {
             body = event.body().buffer().getBytes();
         }
-        event.json(ActorRuntime.getInstance().invoke(type, id, method, body).block());
+        byte[] result = ActorRuntime.getInstance().invoke(type, id, method, body).block();
+        event.end(Buffer.buffer(result));
     }
 }

@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 
 import io.dapr.actors.runtime.ActorRuntime;
 import io.vertx.core.buffer.Buffer;
-import io.vertx.core.http.HttpHeaders;
 import io.vertx.ext.web.RoutingContext;
 
 /**
@@ -34,8 +33,7 @@ public class DaprConfigHandler extends AbstractDaprHandler {
     protected void get(RoutingContext event) {
         try {
             byte[] actorRuntimeConfig = ActorRuntime.getInstance().serializeConfig();
-            event.response().putHeader(HttpHeaders.CONTENT_TYPE, "application/json")
-                    .end(Buffer.buffer(actorRuntimeConfig));
+            event.end(Buffer.buffer(actorRuntimeConfig));
         } catch (IOException e) {
             log.error("Actor: get actor config error", e);
             event.fail(e);

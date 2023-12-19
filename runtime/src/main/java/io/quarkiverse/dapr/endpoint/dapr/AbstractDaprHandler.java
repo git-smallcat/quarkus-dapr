@@ -1,6 +1,7 @@
 package io.quarkiverse.dapr.endpoint.dapr;
 
 import io.vertx.core.Handler;
+import io.vertx.core.http.HttpHeaders;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
@@ -14,6 +15,7 @@ public abstract class AbstractDaprHandler implements Handler<RoutingContext> {
 
     @Override
     public void handle(RoutingContext event) {
+        event.response().putHeader(HttpHeaders.CONTENT_TYPE, "application/json");
         HttpMethod method = event.request().method();
         if (HttpMethod.GET.equals(method)) {
             get(event);

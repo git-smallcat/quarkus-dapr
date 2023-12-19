@@ -35,6 +35,7 @@ public class ActorInvokeTimerHandler extends AbstractDaprActorHandler {
         } else {
             body = event.body().buffer().getBytes();
         }
-        event.json(ActorRuntime.getInstance().invokeTimer(type, id, timer, body).block());
+        ActorRuntime.getInstance().invokeTimer(type, id, timer, body).block();
+        event.end();
     }
 }

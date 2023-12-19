@@ -27,5 +27,6 @@ public class ActorDeactivateHandler extends AbstractDaprActorHandler {
         String type = event.pathParam("type");
         String id = event.pathParam("id");
         ActorRuntime.getInstance().deactivate(type, id).block();
+        event.end();
     }
 }
