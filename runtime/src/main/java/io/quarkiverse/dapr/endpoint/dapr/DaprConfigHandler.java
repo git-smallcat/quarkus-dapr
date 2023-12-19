@@ -2,7 +2,12 @@ package io.quarkiverse.dapr.endpoint.dapr;
 
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import io.dapr.actors.runtime.ActorRuntime;
+import io.vertx.core.buffer.Buffer;
+import io.vertx.core.http.HttpHeaders;
 import io.vertx.ext.web.RoutingContext;
 
 /**
@@ -12,6 +17,7 @@ import io.vertx.ext.web.RoutingContext;
  * @date 22022-04-01 17:42:02
  */
 public class DaprConfigHandler extends AbstractDaprHandler {
+    private static final Logger log = LoggerFactory.getLogger(DaprConfigHandler.class);
 
     @Override
     public String subRoute() {
@@ -26,6 +32,13 @@ public class DaprConfigHandler extends AbstractDaprHandler {
      */
     @Override
     protected void get(RoutingContext event) {
-        event.json(ActorRuntime.getInstance().getConfig());
+        try {
+            byte[] actorRuntimeConfig = ActorRuntime.getInstance().serializeConfig();
+            event.response().putHeader(HttpHeaders.CONTENT_TYPE, "application/json")
+                    .end(Buffer.buffer(actorRuntimeConfig));
+        } catch (IOException e) {
+            log.error("Actor: get actor config error", e);
+            event.fail(e);
+        }
     }
 }
