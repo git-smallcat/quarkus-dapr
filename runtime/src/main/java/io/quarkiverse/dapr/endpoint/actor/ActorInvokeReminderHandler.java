@@ -18,10 +18,10 @@ public class ActorInvokeReminderHandler extends AbstractDaprActorHandler {
     /**
      * Handles API to trigger an actor's reminder.
      *
-     * @param type Actor type.
-     * @param id Actor Id.
+     * @param type     Actor type.
+     * @param id       Actor Id.
      * @param reminder Actor reminder's name.
-     * @param body Raw request's body.
+     * @param body     Raw request's body.
      * @return Void.
      */
     @Override
@@ -29,7 +29,12 @@ public class ActorInvokeReminderHandler extends AbstractDaprActorHandler {
         String type = event.pathParam("type");
         String id = event.pathParam("id");
         String reminder = event.pathParam("reminder");
-        byte[] body = event.body().buffer().getBytes();
+        byte[] body = null;
+        if (event.body().isEmpty()) {
+            body = new byte[0];
+        } else {
+            body = event.body().buffer().getBytes();
+        }
         ActorRuntime.getInstance().invokeReminder(type, id, reminder, body).block();
     }
 }
