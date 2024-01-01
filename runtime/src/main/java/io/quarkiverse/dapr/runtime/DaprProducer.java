@@ -24,11 +24,12 @@ import io.quarkus.runtime.Startup;
  * @date 22022-04-01 17:42:02
  */
 @ApplicationScoped
+@Startup
 public class DaprProducer {
 
     @Produces
     @DefaultBean
-    @Startup
+    
     @Singleton
     @Unremovable
     public JacksonDaprObjectSerializer jacksonDaprObjectSerializer(ObjectMapper objectMapper) {
@@ -37,7 +38,6 @@ public class DaprProducer {
 
     @Produces
     @DefaultBean
-    @Startup
     @Singleton
     @Unremovable
     public DaprClient daprClient(JacksonDaprObjectSerializer serializer) {
@@ -49,7 +49,6 @@ public class DaprProducer {
 
     @Produces
     @DefaultBean
-    @Startup
     @Singleton
     @Unremovable
     public SyncDaprClient syncDaprClient(DaprClient client, DaprConfig config) {
