@@ -29,7 +29,7 @@ public class DaprProducer {
 
     @Produces
     @DefaultBean
-    
+
     @Singleton
     @Unremovable
     public JacksonDaprObjectSerializer jacksonDaprObjectSerializer(ObjectMapper objectMapper) {

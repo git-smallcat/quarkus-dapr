@@ -8,13 +8,14 @@
   </parent>
   <groupId>io.quarkiverse.dapr</groupId>
   <artifactId>quarkus-dapr-parent</artifactId>
-  <version>999-SNAPSHOT</version>
+  <version>2.0.2-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>Quarkus - Dapr - Parent</name>
   <modules>
     <module>deployment</module>
     <module>runtime</module>
   </modules>
+  
   <scm>
     <connection>:git:git@github.com:quarkiverse/quarkus-dapr.git</connection>
     <developerConnection>scm:git:git@github.com:quarkiverse/quarkus-dapr.git</developerConnection>
@@ -30,6 +31,18 @@
     <dapr.version>1.10.0</dapr.version>
     <okhttp.version>4.10.0</okhttp.version>
   </properties>
+  <distributionManagement>
+    <repository>
+      <id>goblin</id>
+      <name>local nexus</name>
+      <url>http://124.128.151.246:50081/repository/goblin/</url>
+    </repository>
+    <snapshotRepository>
+      <id>goblin</id>
+      <name>local nexus</name>
+      <url>http://124.128.151.246:50081/repository/goblin/</url>
+    </snapshotRepository>
+  </distributionManagement>
   <dependencyManagement>
     <dependencies>
       <dependency>
