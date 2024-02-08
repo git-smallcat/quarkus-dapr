@@ -34,6 +34,24 @@
         "code",
         "maintenance"
       ]
+    },
+    {
+      "login": "yugoccp",
+      "name": "Yugo Sakamoto",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1724114?v=4",
+      "profile": "https://theleaderdev.com/",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "mcruzdev",
+      "name": "Matheus Cruz",
+      "avatar_url": "https://avatars.githubusercontent.com/u/56329339?v=4",
+      "profile": "https://github.com/mcruzdev",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
@@ -41,5 +59,7 @@
   "projectOwner": "quarkiverse",
   "repoType": "github",
   "repoHost": "https://github.com",
-  "skipCi": true
+  "skipCi": true,
+  "commitType": "docs",
+  "commitConvention": "angular"
 }
